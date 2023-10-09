@@ -11,4 +11,5 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Echo Commit ID
-      run: echo "The commit ID that triggered this workflow is: ${{ github.sha }}"
+      run: |
+      echo "The commit ID that triggered this workflow is: ${{ github.sha }}"
