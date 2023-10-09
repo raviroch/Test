@@ -1,0 +1,14 @@
+on:
+  push:
+    branches:
+      - main
+jobs:
+  echo_commit_id:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Echo Commit ID
+      run: echo "The commit ID that triggered this workflow is: ${{ github.sha }}"
