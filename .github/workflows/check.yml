@@ -12,4 +12,4 @@ jobs:
 
     - name: Echo Commit ID
       run: |
-       echo "The commit ID that triggered this workflow is: ${{ github.sha }}"
+       echo "The commit ID that triggered this workflow is:- ${{ github.sha }}"
