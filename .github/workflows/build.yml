@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - main
+      - master
 jobs:
   echo_commit_id:
     runs-on: ubuntu-latest
