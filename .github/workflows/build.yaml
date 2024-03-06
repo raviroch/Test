@@ -12,6 +12,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
  
       - name: Black Duck Scan
         run: |
@@ -21,6 +24,7 @@ jobs:
           projectGroupName='SPARQ'
           projectVersionName='1.0.2'
           authToken='${{ secrets.blackduckversionsmanager_PSW }}'
+          
           echo "Black Duck URL: $blackDuckUrl"
           echo "Project Name: $projectName"
           echo "Project Group Name: $projectGroupName"
@@ -39,7 +43,7 @@ jobs:
           if [ $numberOfVersions -ge 10 ]; then
             # Delete the oldest version
             if [ -n "$oldestVersionId" ]; then
-              curl -X DELETE -H "Authorization: Bearer $authToken" "$blackDuckUrl/api/projects/a5337ff5-a0e4-4e97-8541-341830c710e7/versions/$oldestVersionId"
+              curl -X DELETE -H "Authorization: Bearer $authToken"\"$blackDuckUrl/api/projects/a5337ff5-a0e4-4e97-8541-341830c710e7/versions/$oldestVersionId"
               echo "Deleted Oldest Version ID: $oldestVersionId"
             fi
           else
