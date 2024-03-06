@@ -1,0 +1,47 @@
+name: Black Duck Scan
+ 
+on:
+  push:
+    branches:
+      - main
+ 
+jobs:
+  black_duck_scan:
+    runs-on: ubuntu-latest
+ 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+ 
+      - name: Black Duck Scan
+        run: |
+          echo "===== Starting Black Duck Scan Stage ====="
+blackDuckUrl='https://bakerhughes-test.app.blackduck.com'
+          projectName='Configurable_Dashboard_Store'
+          projectGroupName='SPARQ'
+          projectVersionName='1.0.2'
+          authToken='${{ secrets.blackduckversionsmanager_PSW }}'
+          echo "Black Duck URL: $blackDuckUrl"
+          echo "Project Name: $projectName"
+          echo "Project Group Name: $projectGroupName"
+          echo "Project Version Name: $projectVersionName"
+          
+          # Get the list of versions for the project
+          projectVersions=$(curl -s -H "Authorization: Bearer $authToken" "$blackDuckUrl/api/projects/a5337ff5-a0e4-4e97-8541-341830c710e7/versions")
+          
+          # Extract the versionId of the oldest version, assuming the list is sorted by date
+          oldestVersionId=$(echo "$projectVersions" | jq -r '.items[0]._meta.href | split("/") | last')
+          
+          # Check the number of versions in the parsedProjectVersions
+          numberOfVersions=$(echo "$projectVersions" | jq -r '.totalCount')
+          echo "Number of Versions: $numberOfVersions"
+          
+          if [ $numberOfVersions -ge 10 ]; then
+            # Delete the oldest version
+            if [ -n "$oldestVersionId" ]; then
+              curl -X DELETE -H "Authorization: Bearer $authToken" "$blackDuckUrl/api/projects/a5337ff5-a0e4-4e97-8541-341830c710e7/versions/$oldestVersionId"
+              echo "Deleted Oldest Version ID: $oldestVersionId"
+            fi
+          else
+            echo "No need to delete the oldest version as there is only $numberOfVersions versions."
+          fi
