@@ -20,9 +20,9 @@ jobs:
         run: |
           echo "===== Starting Black Duck Scan Stage ====="
           blackDuckUrl='https://bakerhughes-test.app.blackduck.com'
-          projectName='Configurable_Dashboard_Store'
-          projectGroupName='SPARQ'
-          projectVersionName='1.0.2'
+          projectName='bh-qafco-dashboard-app'
+          projectGroupName='IAM - Projects'
+          projectVersionName=''
           authToken='${{ secrets.blackduckversionsmanager_PSW }}'
           
           echo "Black Duck URL: $blackDuckUrl"
@@ -31,7 +31,7 @@ jobs:
           echo "Project Version Name: $projectVersionName"
           
           # Get the list of versions for the project
-          projectVersions=$(curl -s -H "Authorization: Bearer $authToken"\"$blackDuckUrl/api/projects/a5337ff5-a0e4-4e97-8541-341830c710e7/versions")
+          projectVersions=$(curl -s -H "Authorization: Bearer $authToken"\"$blackDuckUrl/api/projects/96da0e7e-77f1-4940-a7ba-02b3571b52d6/versions")
           
           # Extract the versionId of the oldest version, assuming the list is sorted by date
           oldestVersionId=$(echo "$projectVersions" | jq -r '.items[0]._meta.href | split("/") | last')
