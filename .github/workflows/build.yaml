@@ -43,9 +43,9 @@ jobs:
           
           if [ $numberOfVersions -ge 10 ]; then
             # Delete the oldest version
-            if [ -n "$oldestVersionId" ]; then
-              #curl -X DELETE -H "Authorization: Bearer $authToken"\"$blackDuckUrl/api/projects/96da0e7e-77f1-4940-a7ba-02b3571b52d6/versions/$oldestVersionId"
-              #echo "Deleted Oldest Version ID: $oldestVersionId"
+            # if [ -n "$oldestVersionId" ]; then
+            #   curl -X DELETE -H "Authorization: Bearer $authToken"\"$blackDuckUrl/api/projects/96da0e7e-77f1-4940-a7ba-02b3571b52d6/versions/$oldestVersionId"
+            #   echo "Deleted Oldest Version ID: $oldestVersionId"
               echo "Deleted Oldest Version ID: 11"
             fi
           else
