@@ -9,11 +9,11 @@ jobs:
   black_duck_scan:
     runs-on: ubuntu-latest
     env:
-      blackDuckUrl='https://bakerhughes.app.blackduck.com/'
-      projectName='bh-qafco-dashboard-app'
-      projectGroupName='IAM - Projects'
-      projectVersionName=''
-      authToken='${{ secrets.blackduckversionsmanager_PSW }}'
+      blackDuckUrl: "https://bakerhughes.app.blackduck.com/"
+      projectName: "bh-qafco-dashboard-app"
+      projectGroupName: "IAM - Projects"
+      projectVersionName: ''
+      authToken: ${{ secrets.blackduckversionsmanager_PSW }}
      
     steps:
       - name: Checkout code
@@ -25,13 +25,13 @@ jobs:
       - name: Black Duck Scan
         run: |
           echo "===== Starting Black Duck Scan Stage ====="        
-          echo "Black Duck URL: $blackDuckUrl"
-          echo "Project Name: $projectName"
-          echo "Project Group Name: $projectGroupName"
-          echo "Project Version Name: $projectVersionName"
+          echo "Black Duck URL: ${{ env.blackDuckUrl }}"
+          echo "Project Name: ${{ env.projectName }}"
+          echo "Project Group Name: ${{ env.projectGroupName }}"
+          echo "Project Version Name: ${{ env.projectVersionName }}"
           
           # Get the list of versions for the project
-          projectVersions=$(curl -s -H "Authorization: Bearer $authToken' \ '$blackDuckUrl/api/projects/96da0e7e-77f1-4940-a7ba-02b3571b52d6/versions")
+          projectVersions=$(curl -s -H "Authorization: Bearer ${{ secrets.blackduckversionsmanager_PSW }}'\'${{ env.blackDuckUrl }}/api/projects/96da0e7e-77f1-4940-a7ba-02b3571b52d6/versions")
           echo "$projectVersions"
           
           # # Extract the versionId of the oldest version, assuming the list is sorted by date
