@@ -8,7 +8,13 @@ on:
 jobs:
   black_duck_scan:
     runs-on: ubuntu-latest
- 
+    env:
+      blackDuckUrl='https://bakerhughes.app.blackduck.com/'
+      projectName='bh-qafco-dashboard-app'
+      projectGroupName='IAM - Projects'
+      projectVersionName=''
+      authToken='${{ secrets.blackduckversionsmanager_PSW }}'
+     
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -18,13 +24,7 @@ jobs:
  
       - name: Black Duck Scan
         run: |
-          echo "===== Starting Black Duck Scan Stage ====="
-          blackDuckUrl='https://bakerhughes.app.blackduck.com/'
-          projectName='bh-qafco-dashboard-app'
-          projectGroupName='IAM - Projects'
-          projectVersionName=''
-          authToken='${{ secrets.blackduckversionsmanager_PSW }}'
-          
+          echo "===== Starting Black Duck Scan Stage ====="        
           echo "Black Duck URL: $blackDuckUrl"
           echo "Project Name: $projectName"
           echo "Project Group Name: $projectGroupName"
