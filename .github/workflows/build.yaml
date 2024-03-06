@@ -31,7 +31,7 @@ jobs:
           echo "Project Version Name: $projectVersionName"
           
           # Get the list of versions for the project
-          projectVersions=$(curl -s -H "Authorization: Bearer $authToken"\"$blackDuckUrl/api/projects/96da0e7e-77f1-4940-a7ba-02b3571b52d6/versions")
+          projectVersions=$(curl -s -H "Authorization: Bearer $authToken' \ '$blackDuckUrl/api/projects/96da0e7e-77f1-4940-a7ba-02b3571b52d6/versions")
           echo "$projectVersions"
           
           # # Extract the versionId of the oldest version, assuming the list is sorted by date
