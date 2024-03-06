@@ -19,7 +19,7 @@ jobs:
       - name: Black Duck Scan
         run: |
           echo "===== Starting Black Duck Scan Stage ====="
-          blackDuckUrl='https://bakerhughes-test.app.blackduck.com'
+          blackDuckUrl='https://bakerhughes.app.blackduck.com/'
           projectName='bh-qafco-dashboard-app'
           projectGroupName='IAM - Projects'
           projectVersionName=''
