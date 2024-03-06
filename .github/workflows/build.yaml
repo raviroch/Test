@@ -16,7 +16,7 @@ jobs:
       - name: Black Duck Scan
         run: |
           echo "===== Starting Black Duck Scan Stage ====="
-blackDuckUrl='https://bakerhughes-test.app.blackduck.com'
+          blackDuckUrl='https://bakerhughes-test.app.blackduck.com'
           projectName='Configurable_Dashboard_Store'
           projectGroupName='SPARQ'
           projectVersionName='1.0.2'
